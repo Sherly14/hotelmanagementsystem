@@ -1,0 +1,84 @@
+  {% include "hotelapp/header.html" %}
+  {% load static %}
+  <script type="text/javascript" src="{% static 'js/jquery-3.5.1.min.js'%}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.validate.min.js'%}"></script>
+  <script>
+        $(document).ready(function()
+	{
+		$("form").validate(
+		{
+			rules :
+			{
+				name : { required : true },
+				quest : { required : true },
+				checkindate : {required : true},
+				checkoutdate : {required : true}
+
+			}
+
+		})
+	})
+  </script>
+  <div class="container">
+      <h2 class="text-center">Add Room</h2>
+
+      <form action="/bookroom/{{room.roomId}}" method="post">
+        {% csrf_token %}
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="emailid">Email Id</label>
+    <input type="email" class="form-control" id="emailid" name="emailid" value="{{customer}}" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="quest">Number of Quest</label>
+    <input type="number" class="form-control" id="quest" name="quest">
+  </div>
+
+  <div class="form-group">
+    <label for="roomno">Room Number</label>
+    <input type="number" class="form-control" id="roomno" name="roomno" value="{{room.roomId}}" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="type">Room Type</label>
+    <input type="text" class="form-control" id="type" name="type" value="{{room.roomType}}" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="beds">Beds</label>
+    <input type="number" class="form-control" id="beds" name="beds" value="{{room.beds}}" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="capacity">Capacity</label>
+    <input type="text" class="form-control" id="capacity" name="capacity" value="{{room.capacity}}" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input type="text" class="form-control" id="price" name="price" value="{{room.price}}" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="checkindate">Check-In Date</label>
+    <input type="date" class="form-control" id="checkindate" name="checkindate">
+  </div>
+
+  <div class="form-group">
+    <label for="checkoutdate">Check-Out Date</label>
+    <input type="date" class="form-control" id="checkoutdate" name="checkoutdate">
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Book Room</button>
+  <button type="reset" class="btn btn-danger">Cancel</button>
+</form>
+    </div>
+
+  {% include "hotelapp/footer.html" %}

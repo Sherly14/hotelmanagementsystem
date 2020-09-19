@@ -1,0 +1,48 @@
+{% include "hotelapp/header.html" %}
+
+    <div class="container-fluid">
+      <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Room Number</th>
+      <th scope="col">Room Type</th>
+      <th scope="col">Beds</th>
+      <th scope="col">Capacity</th>
+      <th scope="col">Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">Price</th>
+      {% if request.session.customer !=  None and request.session.admin == None %}
+      <th scope="col">Action</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for room in rlist %}
+    <tr>
+      <td>{{room.roomId}}</td>
+      <td>{{room.roomType}}</td>
+      <td>{{room.beds}}</td>
+      <td>{{room.capacity}}</td>
+      <td>{{room.date}}</td>
+      <td>{{room.status}}</td>
+       <td>{{room.price}}</td>
+      {% if request.session.customer !=  None and request.session.admin == None %}
+      <td>
+          {% if room.status == '-'%}
+          <a  class ="links"  href="/bookroom/{{room.roomId}}">Book</a>
+          {% endif %}
+          {% if room.status == 'Booked'%}
+          <strike>Book</strike>
+          {% endif %}
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    </div>
+
+
+
+   {% include "hotelapp/footer.html" %}

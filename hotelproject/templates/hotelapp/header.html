@@ -1,0 +1,102 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Home</title>
+  </head>
+  <body>
+   {% load static %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Hotel Management System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    {% if request.session.customer !=  None and request.session.admin == None %}
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" href="home">Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="rlist">Book Your Room</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="logout">Log Out</a>
+      </li>
+
+
+
+
+    </ul>
+    {% endif %}
+
+    {% if request.session.customer ==  None and request.session.admin != None %}
+
+      <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" href="home">Home</a>
+      </li>
+
+        <li class="nav-item">
+        <a class="nav-link" href="addrooms">Add Room</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="rlist">Rooms</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="blist">View Bookings</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="logout">Log Out</a>
+      </li>
+
+      </ul>
+    {% endif %}
+
+    {% if request.session.customer ==  None and request.session.admin == None %}
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+        <a class="nav-link" href="home">Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="rlist">Rooms</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="registration">Register</a>
+      </li>
+
+        <li class="nav-item">
+        <a class="nav-link" href="signin">Login</a>
+      </li>
+
+      </ul>
+    {% endif %}
+
+    {% if request.session.customer ==  None and request.session.admin != None %}
+    <form action="searchroom" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" name="checkindate" type="search" placeholder="Check-In(YYYY-MM-DD)" aria-label="Search">
+      <input class="form-control mr-sm-2" name="checkoutdate" type="search" placeholder="Check-Out(YYYY-MM-DD)" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    {% endif %}
+  </div>
+</nav>
+  <br>

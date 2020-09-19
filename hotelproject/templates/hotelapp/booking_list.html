@@ -1,0 +1,32 @@
+{% include "hotelapp/header.html" %}
+
+    <div class="container-fluid">
+      <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Number of Quest</th>
+      <th scope="col">Check-In Date</th>
+      <th scope="col">Check-Out Date</th>
+
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for booking in blist %}
+    <tr>
+      <td>{{booking.user}}</td>
+      <td>{{booking.quest}}</td>
+      <td>{{booking.check_in}}</td>
+      <td>{{booking.check_out}}</td>
+      <td>Booked</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    </div>
+
+
+
+   {% include "hotelapp/footer.html" %}
